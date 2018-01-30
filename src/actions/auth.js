@@ -33,8 +33,7 @@ export const authError = error => ({
     error
 });
 
-// Stores the auth token in state and localStorage, and decodes and stores
-// the user data stored in the token
+// Stores the auth token in state and localStorage, and decodes and stores the user data stored in the token
 const storeAuthInfo = (authToken, dispatch) => {
     const decodedToken = jwtDecode(authToken);
     dispatch(setAuthToken(authToken));
@@ -47,16 +46,10 @@ export const login = (username, password) => dispatch => {
     return (
         fetch(`${API_BASE_URL}/auth/login`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username,
-                password
-            })
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({username, password})
         })
-            // Reject any requests which don't return a 200 status, creating
-            // errors which follow a consistent format
+            // Reject any requests which don't return a 200 status, creating errors which follow a consistent format
             .then(res => normalizeResponseErrors(res))
             .then(res => res.json())
             .then(({authToken}) => storeAuthInfo(authToken, dispatch))
@@ -66,9 +59,10 @@ export const login = (username, password) => dispatch => {
                     code === 401
                         ? 'Incorrect username or password'
                         : 'Unable to login, please try again';
-                dispatch(authError(err));
-                // Could not authenticate, so return a SubmissionError for Redux
-                // Form
+                dispatch(authError(err)); 579j;
+                n  .
+
+                // Could not authenticate, so return a SubmissionError for Redux Form
                 return Promise.reject(
                     new SubmissionError({
                         _error: message
